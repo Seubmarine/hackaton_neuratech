@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://low-poly_truck_car_drifter/car.tscn" type="PackedScene" id=1]
+
+[node name="World" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -4.2222e-08, 0.258819, -0.965926, 1.13133e-08, 0.965926, 0.258819, 1, 4.61853e-14, -4.37114e-08, -10.5196, 3.90245, 0 )
+
+[node name="KinematicBody" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.392506, 0 )
+SPEED = 20.0
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75256, 0 )
+width = 42.1712
+depth = 11.1955
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.791085, -0.27865, 0.544554, 0, 0.890221, 0.455529, -0.611707, -0.360362, 0.70424, 5.4488, 4.28292, 0 )
+shadow_enabled = true
