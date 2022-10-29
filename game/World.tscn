@@ -1,20 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://low-poly_truck_car_drifter/car.tscn" type="PackedScene" id=1]
-[ext_resource path="res://rock/coin.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CoinSpawner.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 187.666, 1.98608, 9.27433 )
 
 [node name="World" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -4.2222e-08, 0.258819, -0.965926, 1.13133e-08, 0.965926, 0.258819, 1, 4.61853e-14, -4.37114e-08, -10.5196, 3.90245, 0 )
+transform = Transform( -3.53472e-08, 0.588293, -0.808648, 2.57151e-08, 0.808648, 0.588293, 1, 4.08562e-14, -4.37114e-08, -9.44577, 7.41597, 0 )
+far = 313.2
 
 [node name="Car" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.862739, 0 )
 SPEED = 20.0
 
 [node name="CSGBox_Road" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0625, -1.88221, 0 )
-width = 42.1712
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 178.462, -1.88221, 0 )
+width = 376.745
 height = 1.18546
 depth = 18.8616
 
@@ -22,5 +26,15 @@ depth = 18.8616
 transform = Transform( 0.791085, -0.27865, 0.544554, 0, 0.890221, 0.455529, -0.611707, -0.360362, 0.70424, 5.4488, 4.28292, 0 )
 shadow_enabled = true
 
-[node name="Coin" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.10378 )
+[node name="CoinSpawner" type="Area" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CoinSpawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 177.605, 0.484644, 0 )
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="CoinSpawner"]
+wait_time = 0.75
+autostart = true
+
+[connection signal="area_exited" from="CoinSpawner" to="CoinSpawner" method="_on_CoinSpawner_area_exited"]

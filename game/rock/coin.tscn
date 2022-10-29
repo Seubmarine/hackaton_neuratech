@@ -84,4 +84,3 @@ anims/RESET = SubResource( 4 )
 anims/coin_animation = SubResource( 5 )
 
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_Coin_body_exited"]

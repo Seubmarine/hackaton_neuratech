@@ -7,9 +7,6 @@ extends KinematicBody
 export var SPEED = 5.0
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 
 func	_physics_process(_delta : float):
 	var strafe : float = Input.get_action_strength("car_right") - Input.get_action_strength("car_left")
@@ -19,6 +16,7 @@ func	_physics_process(_delta : float):
 
 func	touch_coin(_coin : Coin):
 	print("touched a coin")
+	$LabelScore.score += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
