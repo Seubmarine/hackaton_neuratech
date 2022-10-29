@@ -16,6 +16,10 @@ func	_physics_process(_delta : float):
 	var velocity : Vector3 = Vector3.ZERO
 	velocity.z = strafe * SPEED
 	velocity = move_and_slide(velocity, Vector3.UP, false, 4, 0.785398, true)
+
+func	touch_coin(_coin : Coin):
+	print("touched a coin")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

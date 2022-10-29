@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 3.08407, 1.5299, 1.8599 )
 
-[node name="KinematicBody" type="KinematicBody"]
+[node name="Car" type="KinematicBody"]
 script = ExtResource( 13 )
 
 [node name="scene" parent="." instance=ExtResource( 1 )]

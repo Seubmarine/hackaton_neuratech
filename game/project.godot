@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Area",
+"class": "Coin",
+"language": "GDScript",
+"path": "res://rock/coin.gd"
+} ]
+_global_script_class_icons={
+"Coin": ""
+}
+
 [application]
 
 config/name="HackathonGame"
