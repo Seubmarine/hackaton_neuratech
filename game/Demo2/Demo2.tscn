@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Demo2/Player.tscn" type="PackedScene" id=1]
+
+[node name="Demo2" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+width = 15.8607
+height = 0.691624
+depth = 8.18335
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52649, 0 )
+width = 1.0794
+height = 2.65202
+depth = 0.90682
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97341, 1.04243, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.485313, 0.734288, -0.47465, 0.20933, 0.429499, 0.878471, 0.848912, -0.525692, 0.0547333, 0, 2.07612, 2.24903 )
+shadow_enabled = true

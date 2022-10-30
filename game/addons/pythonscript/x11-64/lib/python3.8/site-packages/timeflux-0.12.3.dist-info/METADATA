@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: timeflux
+Version: 0.12.3
+Summary: Acquisition and real-time processing of biosignals
+Home-page: https://timeflux.io
+Author: Pierre Clisson
+Author-email: contact@timeflux.io
+License: MIT
+Project-URL: Documentation, https://doc.timeflux.io
+Project-URL: Source Code, https://github.com/timeflux/timeflux
+Project-URL: Bug Tracker, https://github.com/timeflux/timeflux/issues
+Keywords: time series,machine learning,biosignals,brain-computer interface,BCI,EEG,ECG,PPG,EMG,EDA,GSR
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+License-File: LICENSE
+Requires-Dist: networkx (==2.5.1)
+Requires-Dist: PyYAML (>=5.1)
+Requires-Dist: numpy (>=1.17)
+Requires-Dist: pandas (>=0.25)
+Requires-Dist: xarray (>=0.14)
+Requires-Dist: bottleneck (>=1.3)
+Requires-Dist: scipy (>=1.3)
+Requires-Dist: pyzmq (>=18.1)
+Requires-Dist: coloredlogs (>=10.0)
+Requires-Dist: tables (>=3.6)
+Requires-Dist: Cython (>=0.29.6)
+Requires-Dist: pylsl (>=1.12.2)
+Requires-Dist: python-osc (>=1.7.0)
+Requires-Dist: python-dotenv (>=0.10)
+Requires-Dist: jsonschema (>=3.0)
+Requires-Dist: scikit-learn (>=0.21.3)
+Requires-Dist: Jinja2 (>=2.11)
+Requires-Dist: colorama (>=0.4.4)
+Provides-Extra: dev
+Requires-Dist: pytest (>=5.3) ; extra == 'dev'
+Requires-Dist: sphinx (>=2.2) ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme (>=0.4) ; extra == 'dev'
+Requires-Dist: setuptools-scm ; extra == 'dev'
+Requires-Dist: docinit ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Provides-Extra: opt
+Requires-Dist: graphviz (>=0.13) ; extra == 'opt'
+Requires-Dist: mne (>=0.23) ; extra == 'opt'
+Requires-Dist: pyedflib (>=0.1.22) ; extra == 'opt'
+
+|Build| |Doc| |PyPI| |Contributor Covenant|
+
+|Logo|
+
+Timeflux
+========
+
+Timeflux is a free and open-source framework for acquiring and processing biosignals in real-time.
+
+Use it to bootstrap your research, build brain-computer interfaces,
+closed-loop biofeedback applications, interactive installations, and
+more. Written in Python, it works on Linux, MacOS and Windows. Made for
+researchers and hackers alike.
+
+Installation
+------------
+
+You can easily install the latest stable release from PyPI. We higlhy recommend that you use an environment management system such as `Conda <https://docs.conda.io/en/latest/miniconda.html>`__ to keep everything tidy.
+
+::
+
+    $ conda create --name timeflux python=3.10 pytables
+    $ conda activate timeflux
+    $ pip install timeflux
+
+Getting started
+---------------
+
+`Read the documentation <https://doc.timeflux.io>`__.
+
+.. |Build| image:: https://img.shields.io/github/workflow/status/timeflux/timeflux/build
+.. |Doc| image:: https://img.shields.io/readthedocs/timeflux/latest
+.. |PyPI| image:: https://img.shields.io/pypi/v/timeflux
+.. |Contributor Covenant| image:: https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg
+.. |Logo| image:: https://avatars3.githubusercontent.com/u/44117793?v=4&s=100
