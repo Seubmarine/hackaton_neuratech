@@ -1,7 +1,9 @@
 ## Installation
 - install Godot
 - install timeflux at https://github.com/timeflux/timeflux
-- ```pip install requirement.txt```
+```
+pip install requirement.txt
+```
 
 ### Requirements
 - Linux with Python ≥ 3.9
