@@ -1,0 +1,124 @@
+mvimport:
+# Input graphs
+# -------------
+  - graphs/bitalino.yaml # uncomment this line to use bitalino device
+  # - graphs/synthetic.yaml # uncomment this line to use brainflow device
+  # - graphs/cython.yaml # uncomment this line to use openBCI device
+  # - graphs/replay.yaml #  uncomment this line to use replayed data
+  # - graphs/sinus.yaml #  uncomment this line to use generated data
+  - graphs/save.yaml # uncomment this graph to save the data in HDF5
+
+graphs:
+
+  - id: broker
+    nodes:
+      - id: broker
+        module: timeflux.nodes.zmq
+        class: Broker
+
+  - id: processing
+    nodes:
+    - id: sub
+      module: timeflux.nodes.zmq
+      class: Sub
+      params:
+        topics: [ raw ]
+    - id: notch
+      module: timeflux_dsp.nodes.filters
+      class: IIRFilter
+      params:
+        filter_type: bandstop
+        frequencies: [45, 55]
+        order: 1
+    - id: bandpass
+      module: timeflux_dsp.nodes.filters
+      class: IIRFilter
+      params:
+        filter_type: bandpass
+        frequencies: [0.1, 30]
+        order: 3
+    - id: select
+      module: timeflux.nodes.query
+      class: LocQuery
+      params:
+        key: [ Fpz ]
+    #- id: filter_bank
+    # module: timeflux_dsp.nodes.filters
+    # class: FilterBank
+    # params:
+    #   filters:
+    #     'delta': {frequencies: [1, 4], order: 3}
+    #     'theta': {frequencies: [5, 7], order: 3}
+    #     'alpha': {frequencies: [8, 12], order: 3}
+    #     'beta':  {frequencies: [13, 20], order: 3}
+    #     'gamma': {frequencies: [25, 40], order: 3}
+    #   design: butter
+    # - id: band_powers
+    #   module: nodes.power
+    #   class: Power
+    #   params:
+    #     length: 3
+    #     step: 1
+    #- id: left_right
+    #  module: nodes.left_right
+    #  class: LeftRight
+    - id: pub_filtered
+      module: timeflux.nodes.zmq
+      class: Pub
+      params:
+        topic: filtered
+    - id: pub_bands
+      module: timeflux.nodes.zmq
+      class: Pub
+      params:
+        topic: bands
+    - id: display
+      module: timeflux.nodes.debug
+      class: Display
+    edges:
+      - source: sub:raw
+        target: notch
+      - source: notch
+        target: bandpass
+      #- source: bandpass
+      #  target: left_right
+      #   target: filter_bank
+      # - source: filter_bank
+      #   target: band_powers
+      - source: bandpass
+        target: pub_filtered
+      #- source: left_right
+      #  target: pub_bands
+      - source: bandpass
+        target: display
+    rate: 10
+
+  - id: apps
+    nodes:
+    - id: sub
+      module: timeflux.nodes.zmq
+      class: Sub
+      params:
+        topics:
+          - raw
+          - filtered
+          - bands
+    - id: ui
+      module: timeflux_ui.nodes.ui
+      class: UI
+      params:
+        routes:
+          bands: www
+    - id: display
+      module: timeflux.nodes.debug
+      class: Display
+    edges:
+      - source: sub:raw
+        target: ui:raw
+      - source: sub:filtered
+        target: ui:filtered
+      - source: sub:bands
+        target: ui:bands
+      - source: ui:events
+        target: display
+    rate: 10
