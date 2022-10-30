@@ -1,6 +1,6 @@
 from enum import Enum
+import pyautogui
 from timeflux.nodes.window import TimeWindow
-
 
 class State(Enum):
     STATE_NOTHING = 0
@@ -45,9 +45,16 @@ class LeftRight(TimeWindow):
                 self.state = State.STATE_LEFT
             if (self.last_state != self.state and self.state != State.STATE_NOTHING):
                 if (self.one_out_of_two % 2):
+                    key_to_press = ""
+                    if (self.state == State.STATE_LEFT):
+                        key_to_press = "left"
+                    if (self.state == State.STATE_RIGHT):
+                        key_to_press = "right"
+                    pyautogui.keyDown(key_to_press)
+                    pyautogui.keyUp(key_to_press)
                     self.logger.debug(f'state {self.state} {self.fpz_min} {self.fpz_max}')
                 self.one_out_of_two += 1
-            ./# self.logger.debug(f'state {self.state} {self.fpz_min} {self.fpz_max}')
+            # self.logger.debug(f'state {self.state} {self.fpz_min} {self.fpz_max}')
             self.fpz_max = 0
             self.fpz_min = 0
             self.last_state = self.state
