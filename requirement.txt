@@ -1,0 +1,6 @@
+timeflux==0.12.3
+timeflux-bitalino==0.3.0
+timeflux-dsp==0.3.4
+timeflux-example==0.2.0
+timeflux-ui==0.5.1
+PyAutoGUI==0.9.53
